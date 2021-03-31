@@ -32,11 +32,12 @@ app.get('/usuario', function(req, res) {
                 });
             }
             //Usuarios.count({ google: true }, (err, conteo) => {
-            Usuarios.count({ estado: true }, (err, conteo) => {
+            Usuarios.countDocuments({ estado: true }, (err, conteo) => {
                 res.json({
                     ok: true,
                     usuarios,
-                    cuantos: conteo
+                    cuantos: conteo,
+                    puerto: process.env.PORT
                 })
             })
 
