@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 
 
-//para vslidar y personalizar mensajes de error.   Validadion  #1
+//para validar y personalizar mensajes de error.   Validadion  #1
+//npm mongoose-unique-validator
 const uniqueValidator = require('mongoose-unique-validator'); //21-03-2021  Validadion #1
 let rolesValidos = {
         values: ['ADMIN_ROLE', 'USER_ROLE'],

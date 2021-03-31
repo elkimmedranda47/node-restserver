@@ -1,7 +1,10 @@
-const express = require('express');
+//SERVICIO DE USUARIOS
 
+const express = require('express');
+// npm  bcrypt, Encriptar contraseñas   
 const bcrypt = require('bcrypt'); //21-03-2021 Validadion #1
-//validar que parametros del esquema/modelo puede ser modificado #2
+
+//npm underscore,  validar que parametros del esquema/modelo puede ser modificado #2
 const _ = require('underscore'); //25-03-2021
 
 const Usuarios = require('../models/usuario');
@@ -17,9 +20,8 @@ app.get('/usuario', function(req, res) {
     let limite = req.query.limite || 5; //26-03-2020 #3
     limite = Number(limite);
 
-    //Usuarios.find({ google: true })
-
-    Usuarios.find({ estado: true }, ' email google img nombre role') //26-03-2020 #3
+    //Usuarios.find({ google: true }) devuelve todos los usuarios con estado  google: true
+    Usuarios.find({ estado: true }, 'estado email google img nombre role') //26-03-2020 #3
         .skip(desde)
         .limit(limite)
         .exec((err, usuarios) => {
@@ -36,8 +38,8 @@ app.get('/usuario', function(req, res) {
                 res.json({
                     ok: true,
                     usuarios,
-                    cuantos: conteo,
-                    puerto: process.env.PORT
+                    cuantos: conteo
+
                 })
             })
 
@@ -47,14 +49,12 @@ app.get('/usuario', function(req, res) {
 app.post('/usuario', function(req, res) {
     let body = req.body;
 
-
     let usuario = new Usuarios({
         nombre: body.nombre,
         email: body.email,
         //Encriptando pass una sola via
         password: bcrypt.hashSync(body.password, 10), //21-03-2021 Validadion #1
-        role: body.role,
-
+        role: body.role
     });
 
     usuario.save((err, usuarioDB) => {
@@ -63,10 +63,8 @@ app.post('/usuario', function(req, res) {
             return res.status(400).json({
                 ok: false,
                 err
-
             });
         }
-
         res.json({
             ok: true,
             usuario: usuarioDB
@@ -80,11 +78,9 @@ app.put('/usuario/:id', function(req, res) {
     let id = req.params.id;
 
     //let body = req.body;
-    let body = _.pick(req.body, ['nombre', 'email', 'img', 'rol', 'estado']); //25-03-2021 Validadion #2
-
-
-
-
+    //Documentacion, https://underscorejs.org/#pick
+    //Negar la Modificacion de los campos  password y google, solo dejar moificar ('nombre', 'email', 'img', 'rol', 'estado')
+    let body = _.pick(req.body, ['nombre', 'email', 'img', 'rol', 'estado']); //25-03-2021 Validation #2
 
     Usuarios.findByIdAndUpdate(id, body, { runValidators: true }, (err, usuarioDB) => {
 
@@ -111,45 +107,38 @@ app.put('/usuario/:id', function(req, res) {
 
 app.delete('/usuario/:id', function(req, res) {
     let id = req.params.id;
-    //let body = _.pick(req.body, ['nombre']);
-
+    //let body = _.pick(req.body, ['nombre']);//trabajar en la devolouvion del docuemnto  esta linea no salio
+    let body = req.body;
 
     let cambiarEstado = {
         estado: false
     };
-    const query = { id, estado: true };
 
-    Usuarios.findByIdAndUpdate(query, cambiarEstado, (err, usuarioBorrado) => {
+    //Usuarios.findByIdAndRemove(id,(err,usuarioBorrado)=>{});// Borrar documento  de la DB de mongo
 
+    Usuarios.findByIdAndUpdate(id, cambiarEstado, (err, usuarioBorrado) => {
 
-        /*  if (err) {
-              return res.status(400).json({
-                  ok: false,
-                  err
-
-              });
-          }*/
         if (!usuarioBorrado) {
             return res.status(400).json({
-
                 ok: false,
                 err: { message: 'Usuario no encontrado' }
             });
-
         }
 
         res.json({
             ok: true,
+            id: id,
             usuario: usuarioBorrado
         })
 
 
     }); //25-03-2021
 
-    // res.json(id)
+
 });
 
 
 
-
+//Exportando el archivo o modulo app con los middleware ya configurados,  "En pocas palabras estamos gestionando las rutas y Cargandolas al modulo app de express para usarla en el main de la aplicacion que seria server.js.
+//cargamdo middleware ya configurado para usarlos en otros archivos
 module.exports = app;
