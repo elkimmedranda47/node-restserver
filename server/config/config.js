@@ -14,14 +14,30 @@ process.env.PORT = process.env.PORT || 3000;
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
+//==================== 04--04-2020 #4
+//Entorno
+//====================
+//segundos
+//minutos
+//horas
+//dias
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+//==================== 04--04-2020 #4
+//SEED de autenticacion 
+//====================
+//variable de entorno en heroku process.env.SEED
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
+
 //====================
 //Base de datos enla nube
-//====================
+//==================== 
 let urlDB;
 
 if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/cafe';
 } else {
+    //variable de entorno en heroku process.env.MONGO_URI
     urlDB = process.env.MONGO_URI;
 }
 process.env.URL_DB_EKN47 = urlDB;
