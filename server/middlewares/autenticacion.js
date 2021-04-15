@@ -1,3 +1,4 @@
+//npm install jsonwebtoken --save
 const jwt = require('jsonwebtoken'); //Gestion de Token 04--04-2020 #4
 //===================
 //Verificar Token
@@ -6,7 +7,10 @@ const jwt = require('jsonwebtoken'); //Gestion de Token 04--04-2020 #4
 
 //middleware
 let verificaToken = (req, res, next) => {
+
+    //Octener la variable token que viene del  headers
     let token = req.get('token');
+
 
     jwt.verify(token, process.env.SEED, (err, decode) => {
         if (err) {
@@ -18,6 +22,7 @@ let verificaToken = (req, res, next) => {
             });
         }
         req.usuario = decode.usuario;
+
         next();
     });
 

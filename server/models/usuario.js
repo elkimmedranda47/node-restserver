@@ -22,7 +22,7 @@ const usuarioSchema = new Schema({
     email: {
         type: String,
         //valor unico reuqerido gracias a una caracteristica de mongoose devulve Mensjae de Error  Validadion#1
-        unique: true, //21-03-2021 Validadion #1
+        unique: true, //21-03-2021 Validacion #1
         required: [true, 'El Correo es necesario']
 
     },
