@@ -1,33 +1,20 @@
 require('./config/config');
-<<<<<<< HEAD
 
 // npm express, importando gestion de servidor NN-NN-2021 #N..................
 const express = require('express');
 const app = express();
 
 //npm mongoose, importando gestion de DB-mongo NN-NN-2021 #N.................^
-=======
-// npm express, importando gestion de servidor NN-NN-2021 #N
-const express = require('express');
-const app = express();
-//npm mongoose, importando gestion de DB-mongo NN-NN-2021 #N
->>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 const mongoose = require('mongoose');
 
 //resolver la carpeta public , paquete que trae node por defecto...............
 const path_carpeta_public = require('path');
 //............................................................................^
 
-<<<<<<< HEAD
 /*los app.use() son middleware que se ejecutan cada vez que haya una peticion o mas claro cada peticion que se aga va a pasar por esas lineas*/
 
 //npm body-parser, NN-NN-2021 #N.  Procesar peticiones x-www-form-urlencoded,nos permite cacturar el "body" de la peticion (req.body). NN-NN-2021 #N...............
 
-=======
-//
-//npm body-parser, NN-NN-2021 #N.  Procesar peticiones x-www-form-urlencoded,nos permite cacturar el "body" de la peticion (req.body). NN-NN-2021 #N
-//........................................................ NN-NN-2021 #N
->>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 const bodyParser = require('body-parser');
 const { path } = require('./routes');
 
@@ -42,7 +29,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
-<<<<<<< HEAD
 //........................................................ NN-NN-2021 #N..........................................................................................^
 
 //Habilitr la carpeta pucblic el home......................................modulo-11......15-04-2021 #5......
@@ -53,9 +39,6 @@ app.use(express.static(path_carpeta_public.resolve(__dirname, '../public')));
 
 
 
-=======
-//........................................................ NN-NN-2021 #N
->>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 
 //conectando ala base de datos 
 

@@ -1,6 +1,5 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-<<<<<<< HEAD
 
 // npm  jsonwebtoken, crear verificar etc.. token
 var jwt = require('jsonwebtoken'); // Gestion de Token ..............04--04-2021 #4
@@ -16,20 +15,11 @@ const Usuarios = require('../models/usuario');
 const app = express();
 
 //....................................................................04--04-2021 #4
-=======
-// npm  jsonwebtoken, crear verificar etc.. token
-var jwt = require('jsonwebtoken'); // Gestion de Token ..............04--04-2020 #4
-const Usuarios = require('../models/usuario');
-const app = express();
-
-//....................................................................04--04-2020 #4
->>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 app.post('/login', (req, res) => {
 
     let body = req.body;
 
     Usuarios.findOne({ email: body.email }, (err, usuarioDB) => {
-<<<<<<< HEAD
         // el err no funciono no se por qeu
         /*   if (err) {
                return res.status(500).json({
@@ -43,14 +33,6 @@ app.post('/login', (req, res) => {
                 ok: false,
                 err: {
                     message: 'Usuario o Contraseña no encontrado'
-=======
-
-        if (!usuarioDB) {
-            return res.status(500).json({
-                ok: false,
-                err: {
-                    message: '(Usuario) o Contraseña no encontrado'
->>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 
                 }
 
@@ -61,11 +43,7 @@ app.post('/login', (req, res) => {
             return res.status(400).json({
                 ok: false,
                 err: {
-<<<<<<< HEAD
                     message: 'Usuario o Contraseña no encontrado',
-=======
-                    message: 'Usuario o (Contraseña) no encontrado',
->>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 
                 }
             });
@@ -92,7 +70,6 @@ app.post('/login', (req, res) => {
 
 })
 
-<<<<<<< HEAD
 //....................................................................04--04-2021 #4
 
 //.......................................................................................modulo-11.....15-04-2021 #5..
@@ -211,13 +188,6 @@ app.post('/google', async(req, res) => {
 
 
 //..................................................................................modulo-11......15-04-2021 #5..,..^
-=======
-//....................................................................04--04-2020 #4
-
-
-
-
->>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 
 
 
