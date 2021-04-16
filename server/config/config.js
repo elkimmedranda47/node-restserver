@@ -25,11 +25,19 @@ process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
 
 //==================== 04--04-2020 #4
 //SEED de autenticacion 
+<<<<<<< HEAD
 //====================
 //variable de entorno en heroku process.env.SEED
 process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
 
 //====================
+=======
+//====================
+//variable de entorno en heroku process.env.SEED
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
+
+//====================
+>>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 //Base de datos enla nube
 //==================== 
 let urlDB;

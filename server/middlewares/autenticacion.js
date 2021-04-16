@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 //npm install jsonwebtoken --save
+=======
+>>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
 const jwt = require('jsonwebtoken'); //Gestion de Token 04--04-2020 #4
 //===================
 //Verificar Token
@@ -7,11 +10,16 @@ const jwt = require('jsonwebtoken'); //Gestion de Token 04--04-2020 #4
 
 //middleware
 let verificaToken = (req, res, next) => {
+<<<<<<< HEAD
 
     //Octener la variable token que viene del  headers
     let token = req.get('token');
 
 
+=======
+    let token = req.get('token');
+
+>>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
     jwt.verify(token, process.env.SEED, (err, decode) => {
         if (err) {
             return res.status(401).json({
@@ -22,7 +30,10 @@ let verificaToken = (req, res, next) => {
             });
         }
         req.usuario = decode.usuario;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 71dfe180fcef5368967110da03bf26adb36a0504
         next();
     });
 
