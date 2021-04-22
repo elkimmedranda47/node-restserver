@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken'); //Gestion de Token 04--04-2020 #4
 //middleware
 let verificaToken = (req, res, next) => {
 
-    //Octener la variable token que viene del  headers
+    //Octener la variable token que viene del  headers y entregar ó encapsular el objeto usuario en  req.usuraio para que cualquier servicio atraves del middleware pueda ostener sus datos 
     let token = req.get('token');
 
 
