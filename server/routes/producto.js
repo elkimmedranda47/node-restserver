@@ -20,6 +20,7 @@ app.post('/producto', verificaToken, (req, res) => {
     let descripcion = req.body.descripcion;
     let disponible = req.body.disponible;
     let categoria = req.body.categoria;
+    //let img;
 
 
 
@@ -29,7 +30,8 @@ app.post('/producto', verificaToken, (req, res) => {
         precioUni,
         descripcion,
         disponible,
-        categoria
+        categoria,
+        //img
     });
 
 
